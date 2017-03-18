@@ -11,6 +11,9 @@ volumes:
     external: true
   secrets:
     external: true
+  homey:
+    external:
+      name: 7f35d5a45e5a7a28e0a3ebd5ab0da654854b7487e6bf4348bfa858d821b9052a
 services:
   chromium:
     image: urgemerge/chromium-pulseaudio
@@ -29,7 +32,7 @@ services:
       - /var/lib/dbus:/var/lib/dbus:ro
       - /tmp:/tmp
       - /home/${HOST_USER}:/home/chromium/.config/pulse:ro
-      - 7f35d5a45e5a7a28e0a3ebd5ab0da654854b7487e6bf4348bfa858d821b9052a:/data
+      - homey:/data
       - /dev/video0:/dev/video:ro
   deciphernow:
     image: tidyrailroad/cloud9:5.3.0
