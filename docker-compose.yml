@@ -1,0 +1,47 @@
+version: "3"
+volumes:
+  workspace:
+  dot_ssh:
+  bin:
+  entrypoint:
+    external: true
+  object-drive-ui-compose:
+    external: true
+  object-drive-ui:
+    external: true
+  secrets:
+    external: true
+services:
+  chromium:
+    image: urgemerge/chromium-pulseaudio
+    privileged: true
+    tty: true
+    shm_size: "256m"
+    environment:
+      - DISPLAY=unix$DISPLAY
+      - TARGETUID=${HOST_UID}
+      - XDG_RUNTIME_DIR=/run/user/${HOST_UID}
+    volumes
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - /run/user/${HOST_UID}/pulse:/run/user/${HOST_UID}/pulse:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket:ro
+      - /var/lib/dbus:/var/lib/dbus:ro
+      - /tmp:/tmp
+      - /home/${HOST_USER}:/home/chromium/.config/pulse:ro
+      - 7f35d5a45e5a7a28e0a3ebd5ab0da654854b7487e6bf4348bfa858d821b9052a:/data
+      - /dev/video0:/dev/video:ro
+  deciphernow:
+    image: tidyrailroad/cloud9:5.3.0
+    environment:
+      - DISPLAY
+    volumes:
+      - workspace:/workspace
+      - dot_ssh:/root/.ssh
+      - bin:/root/bin
+      - entrypoint:/workspace/projects/entrypoint
+      - object-drive-ui-compose:/workspace/projects/object-drive-ui-compose
+      - object-drive-ui:/workspace/projects/object-drive-ui
+      - secrets:/workspace/secrets
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    command: --listen 0.0.0.0 --auth user:password -w /workspace
