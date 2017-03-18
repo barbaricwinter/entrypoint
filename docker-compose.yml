@@ -24,7 +24,7 @@ services:
       - DISPLAY=unix$DISPLAY
       - TARGETUID=${HOST_UID}
       - XDG_RUNTIME_DIR=/run/user/${HOST_UID}
-    volumes
+    volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
       - /run/user/${HOST_UID}/pulse:/run/user/${HOST_UID}/pulse:ro
       - /etc/machine-id:/etc/machine-id:ro
