@@ -42,9 +42,9 @@ services:
       - workspace:/workspace
       - dot_ssh:/root/.ssh
       - bin:/root/bin
-      - entrypoint:/workspace/projects/entrypoint
+      - entrypoint:/srv/entrypoint
       - object-drive-ui-compose:/workspace/projects/object-drive-ui-compose
       - object-drive-ui:/workspace/projects/object-drive-ui
-      - secrets:/workspace/secrets
+      - secrets:/srv/secrets:ro
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     command: --listen 0.0.0.0 --auth user:password -w /workspace
