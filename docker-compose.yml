@@ -43,7 +43,7 @@ services:
       - dot_ssh:/root/.ssh
       - bin:/root/bin
       - entrypoint:/srv/entrypoint
-      - object-drive-ui-compose:/workspace/projects/object-drive-ui-compose
+      - object-drive-ui-compose:/srv/object-drive-ui-compose
       - object-drive-ui:/workspace/projects/object-drive-ui
       - secrets:/srv/secrets:ro
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
