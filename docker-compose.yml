@@ -36,6 +36,8 @@ services:
       - /tmp:/tmp
       - /home/${HOST_USER}:/home/chromium/.config/pulse:ro
       - homey:/data
+      - /home/aaja0ify:/srv/host:ro
+      - workspace:/srv/workspace
       - /dev/video0:/dev/video:ro
   deciphernow:
     image: tidyrailroad/cloud9:5.3.0
