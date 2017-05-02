@@ -14,6 +14,9 @@ volumes:
   homey:
     external:
       name: 7f35d5a45e5a7a28e0a3ebd5ab0da654854b7487e6bf4348bfa858d821b9052a
+  baker:
+    external:
+      name: f49f23e59b766a5b2c4f43e86c8d823e4beff854a49aac40e4765104047f577d
 services:
   chromium:
     image: urgemerge/chromium-pulseaudio
@@ -45,6 +48,7 @@ services:
       - entrypoint:/srv/entrypoint
       - object-drive-ui-compose:/srv/object-drive-ui-compose
       - object-drive-ui:/workspace/projects/object-drive-ui
+      - baker:/srv/baker
       - secrets:/srv/secrets:ro
       - /home/aaja0ify:/srv/host:ro
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
